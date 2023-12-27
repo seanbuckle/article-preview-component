@@ -1,0 +1,233 @@
+@use "./colors.scss" as *;
+@use "./fonts.scss" as *;
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    min-height: 100dvh;
+}
+
+body{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    font: var(--body);
+    background-color: var(--light-greyish-blue);
+}
+main{
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.5rem;
+}
+.card-container{
+    width: min(45.625rem, 100%);
+    container: card / inline-size;
+}
+.card{
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--white);
+    box-shadow: 0px 40px 40px -10px var(--shadow-color);
+    &__img{
+        width: 100%;
+        height: 15.625rem;
+        border-radius: 0.625rem 0.625rem 0 0;
+        background: url("../images/drawers.jpg") no-repeat;
+        background-size: cover;
+        flex-shrink: 0;
+    }
+    &__content{
+        padding: 2rem 2rem 1.25rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__author{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        & img{
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+        }
+    }
+    &__user{
+        display: flex;
+        flex-direction: row;
+    }
+    &__name-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1rem;
+        & span{
+            font: var(--body-bold);
+            letter-spacing: var(--body-bold-spacing);
+            color: var(--very-dark-greyish-blue);
+        }
+        & time{
+            font: var(--body);
+            letter-spacing: var(--body-spacing);
+            color: var(--greyish-blue);
+        }
+    }
+    & h1{
+        font: var(--heading);
+        letter-spacing: var(--heading-spacing);
+        color: var(--very-dark-greyish-blue);
+        padding-bottom: 0.75rem;
+    }
+    & p{
+        font: var(--body);
+        letter-spacing: var(--body-spacing);
+        color: var(--dark-greyish-blue);
+        padding-bottom: 2rem;
+    }
+    &__share-btn{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background-color: var(--light-greyish-blue);
+        &:hover{
+            background-color: var(--desaturated-Dark-Blue);
+            & .share-icon{
+                fill: var(--white);
+            }
+        }
+        &:focus-within{
+            background-color: var(--desaturated-Dark-Blue);
+            & .share-icon{
+                fill: var(--white);
+            }
+            & .card__share-tooltip{
+                display: flex;
+            }
+        }
+    }
+    &__share-tooltip{
+        width: 100%;
+        height: 4rem;
+        padding: 0 2.313rem;
+        border-radius: 0 0 0.625rem 0.625rem;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: var(--very-dark-greyish-blue);
+        color: var(--light-greyish-blue);
+        box-shadow: 0px 10px 10px 0px var(--shadow-color);
+        text-transform: uppercase;
+        z-index: 1;
+        & img{
+            width: 1.25rem;
+            height: auto;
+        }
+        & section{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.25rem;
+        }
+        & span:nth-child(2){
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--greyish-blue);
+        }
+    }
+}
+
+
+@container card (width > 44.313rem){
+    .card{
+        flex-direction: row;
+        position: relative;
+        &__img{
+            width: 17.813rem;
+            height: auto;
+            border-radius: 0.625rem 0 0 0.625rem;
+        }
+        &__content{
+            padding: 2rem 2.5rem 1.25rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        & h1{
+            padding-bottom: 0.75rem;
+        }
+        & p{
+            padding-bottom: 1.25rem;
+        }
+        &__share-tooltip{
+            width: 15.5rem;
+            height: 3.438rem;
+            padding: 0 2.313rem;
+            border-radius: 0.625rem;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 84px;
+            right: -3.875rem;
+            background-color: var(--very-dark-greyish-blue);
+            color: var(--light-greyish-blue);
+            box-shadow: 0px 10px 10px 0px var(--shadow-color);
+            text-transform: uppercase;
+            & img{
+                width: 1.25rem;
+                height: auto;
+            }
+            & section{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1.25rem;
+            }
+            & span:nth-child(2){
+                display: none;
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                bottom: -0.625rem;
+                right: 6.8rem;
+                width: 0;
+                height: 0;
+                border-left: 0.625rem solid transparent;
+                border-right: 0.625rem solid transparent;
+                border-top: 0.625rem solid var(--very-dark-greyish-blue);
+            }
+        }
+    }
+}
+
+.attribution {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    a {
+        font: var(--body-bold);
+        color: var(--very-dark-greyish-blue);
+    &:hover{
+        text-decoration: none;
+    }
+    }
+}
